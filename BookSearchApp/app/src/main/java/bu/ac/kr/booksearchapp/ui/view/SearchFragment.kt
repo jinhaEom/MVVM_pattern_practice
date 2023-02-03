@@ -50,7 +50,9 @@ class SearchFragment : Fragment() {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             addItemDecoration(DividerItemDecoration(requireContext(),
-                DividerItemDecoration.VERTICAL))
+                DividerItemDecoration.VERTICAL
+            )
+            )
             adapter = bookSearchAdapter
         }
         bookSearchAdapter.setOnItemClickListener {

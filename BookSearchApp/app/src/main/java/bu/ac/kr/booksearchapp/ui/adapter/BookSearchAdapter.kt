@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import bu.ac.kr.booksearchapp.data.model.Book
 import bu.ac.kr.booksearchapp.databinding.ItemBookPreviewBinding
 
+
 class BookSearchAdapter : ListAdapter<Book, BookSearchViewHolder>(BookDiffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookSearchViewHolder {
         return BookSearchViewHolder(
