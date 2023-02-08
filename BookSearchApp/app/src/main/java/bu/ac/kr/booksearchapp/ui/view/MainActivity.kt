@@ -10,6 +10,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import bu.ac.kr.booksearchapp.R
+import bu.ac.kr.booksearchapp.data.db.BookSearchDatabase
 import bu.ac.kr.booksearchapp.data.model.repository.BookSearchRepositoryImpl
 import bu.ac.kr.booksearchapp.databinding.ActivityMainBinding
 import bu.ac.kr.booksearchapp.ui.viewModel.BookSearchViewModel
@@ -33,8 +34,8 @@ class MainActivity : AppCompatActivity() {
 //            // 앱이 처음 실행되었을때 fragment_search 화면 띄움
 //        }
         setupJetpackNavigation()
-
-        val bookSearchRepository = BookSearchRepositoryImpl()
+        val database = BookSearchDatabase.getInstance(this)
+        val bookSearchRepository = BookSearchRepositoryImpl(database)
         val factory = BookSearchViewModelProviderFactory(bookSearchRepository, this)
         bookSearchViewModel = ViewModelProvider(this, factory)[BookSearchViewModel::class.java]
     }
