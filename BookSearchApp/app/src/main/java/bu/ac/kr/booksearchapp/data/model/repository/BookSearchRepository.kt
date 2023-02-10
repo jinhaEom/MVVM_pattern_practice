@@ -1,8 +1,8 @@
 package bu.ac.kr.booksearchapp.data.model.repository
 
-import androidx.lifecycle.LiveData
 import bu.ac.kr.booksearchapp.data.model.Book
 import bu.ac.kr.booksearchapp.data.model.SearchResponse
+import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 
 interface BookSearchRepository {
@@ -18,5 +18,5 @@ interface BookSearchRepository {
 
     suspend fun deleteBooks(book: Book)
 
-    fun getFavoriteBooks(): LiveData<List<Book>>
+    fun getFavoriteBooks(): Flow<List<Book>>
 }

@@ -1,10 +1,10 @@
 package bu.ac.kr.booksearchapp.data.model.repository
 
-import androidx.lifecycle.LiveData
 import bu.ac.kr.booksearchapp.data.db.BookSearchDatabase
 import bu.ac.kr.booksearchapp.data.model.Book
 import bu.ac.kr.booksearchapp.data.model.SearchResponse
 import bu.ac.kr.booksearchapp.data.model.api.RetrofitInstance.api
+import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 
 class BookSearchRepositoryImpl(
@@ -27,7 +27,7 @@ class BookSearchRepositoryImpl(
         db.bookSearchDao().deleteBook(book)
     }
 
-    override fun getFavoriteBooks(): LiveData<List<Book>> {
+    override fun getFavoriteBooks(): Flow<List<Book>> {
         return db.bookSearchDao().getFavoriteBooks()
     }
 }

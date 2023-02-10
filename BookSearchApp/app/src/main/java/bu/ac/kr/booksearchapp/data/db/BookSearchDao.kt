@@ -1,8 +1,8 @@
 package bu.ac.kr.booksearchapp.data.db
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import bu.ac.kr.booksearchapp.data.model.Book
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface BookSearchDao {
@@ -15,5 +15,5 @@ interface BookSearchDao {
 
 
     @Query("SELECT * FROM books")
-    fun getFavoriteBooks(): LiveData<List<Book>>
+    fun getFavoriteBooks(): Flow<List<Book>>
 }

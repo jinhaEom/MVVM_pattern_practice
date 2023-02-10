@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import bu.ac.kr.booksearchapp.databinding.FragmentFavoriteBinding
 import bu.ac.kr.booksearchapp.ui.adapter.BookSearchAdapter
 import bu.ac.kr.booksearchapp.ui.viewModel.BookSearchViewModel
+import bu.ac.kr.booksearchapp.util.collectLatestStateFlow
 import com.google.android.material.snackbar.Snackbar
 
 class FavoriteFragment : Fragment() {
@@ -38,8 +39,23 @@ class FavoriteFragment : Fragment() {
         setupRecyclerview()
         setupTouchHelper(view)
 
-        bookSearchViewModel.favoriteBooks.observe(viewLifecycleOwner) {
-            bookSearchAdapter.submitList(it)
+//        bookSearchViewModel.favoriteBooks.observe(viewLifecycleOwner) {
+//            bookSearchAdapter.submitList(it)
+//        }
+//        lifecycleScope.launch {
+//            bookSearchViewModel.favoriteBooks.collectLatest {
+//                bookSearchAdapter.submitList(it)
+//            }
+//        }
+//        viewLifecycleOwner.lifecycleScope.launch {
+//            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+//                bookSearchViewModel.favoriteBooks.collectLatest {
+//                    bookSearchAdapter.submitList(it)
+//                }
+//            }
+//        }
+        collectLatestStateFlow(bookSearchViewModel.favoriteBooks) {
+            bookSearchAdapter.submitList(it) // 코드 간소화 위해 확장함수 용용
         }
     }
 
