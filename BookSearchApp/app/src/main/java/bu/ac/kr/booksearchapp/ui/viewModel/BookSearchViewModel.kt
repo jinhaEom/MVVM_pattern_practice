@@ -1,6 +1,8 @@
 package bu.ac.kr.booksearchapp.ui.viewModel
 
 import androidx.lifecycle.*
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import bu.ac.kr.booksearchapp.data.model.Book
 import bu.ac.kr.booksearchapp.data.model.SearchResponse
 import bu.ac.kr.booksearchapp.data.model.repository.BookSearchRepository
@@ -66,4 +68,10 @@ class BookSearchViewModel(
     suspend fun getSortMode() = withContext(Dispatchers.IO) {
         bookSearchRepository.getSortMode().first()
     }
+
+    //paging
+    val favoritePagingBooks: StateFlow<PagingData<Book>> =
+        bookSearchRepository.getFavoritePagingBooks()
+            .cachedIn(viewModelScope)
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), PagingData.empty())
 }

@@ -1,5 +1,6 @@
 package bu.ac.kr.booksearchapp.data.model.repository
 
+import androidx.paging.PagingData
 import bu.ac.kr.booksearchapp.data.model.Book
 import bu.ac.kr.booksearchapp.data.model.SearchResponse
 import kotlinx.coroutines.flow.Flow
@@ -24,4 +25,7 @@ interface BookSearchRepository {
     suspend fun saveSortMode(mode: String)
 
     suspend fun getSortMode(): Flow<String>
+
+    //paging
+    fun getFavoritePagingBooks(): Flow<PagingData<Book>>
 }
